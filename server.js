@@ -3,7 +3,9 @@ import cors from 'cors';
 import axios from 'axios';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // Libera geral (ideal só para testes; veja abaixo versão segura)
+}));
 
 app.get('/moeda', async (req, res) => {
   const { base = 'USD', target = 'BRL' } = req.query;
@@ -21,7 +23,7 @@ app.get('/moeda', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
